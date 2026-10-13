@@ -1,0 +1,51 @@
+﻿<Window x:Class="PavlovWpf_pr4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PavlovWpf_pr4"
+        Title="Услуга" Height="450" Width="600">
+
+    <Window.Resources>
+        <local:Service x:Key="CurrentService"/>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <Binding Source="{StaticResource CurrentService}"/>
+    </Window.DataContext>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+       
+        <StackPanel>
+            <Label Content="ID"/>
+            <Label Content="Название"/>
+            <Label Content="Исполнитель"/>
+            <Label Content="Стоимость часа"/>
+            <Label Content="Количество часов"/>
+            <Label Content="Стоимость услуги"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1">
+            <TextBox Margin="5" Text="{Binding Id}" IsReadOnly="True"/>
+            <TextBox Margin="5" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Margin="5" Text="{Binding Executor, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Margin="5" Text="{Binding HourPrice, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Margin="5" Text="{Binding Hours, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Margin="5" Text="{Binding TotalPrice}" FontWeight="Bold"/>
+        </StackPanel>
+
+        
+        <StackPanel Grid.Column="2">
+            <Label Content="Поиск по ID"/>
+            <TextBox x:Name="FindBox" Margin="5"/>
+            <Button Content="Найти" Click="Find_Click" Margin="5"/>
+            <Button Content="Сохранить" Click="Save_Click" Margin="5"/>
+            <Button Content="Новая запись" Click="New_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
